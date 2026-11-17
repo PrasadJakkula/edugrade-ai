@@ -6,6 +6,7 @@ import { apiRequest } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { Rubric, RubricVersion, SUPPORTED_SUBJECTS } from "../types";
+import { flowClasses, getCriterionJss } from "../styles/evaloraJss";
 import { Plus, Copy, History, Edit3, Trash2, RefreshCw, ClipboardCheck } from "lucide-react";
 
 interface DraftCriterion {
@@ -231,7 +232,7 @@ export function RubricsPage() {
             resetBuilder();
             setShowBuilder(true);
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 whitespace-nowrap shrink-0"
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 ${flowClasses.primaryCtaButton}`}
         >
           <Plus className="w-4 h-4" />
           <span>New Rubric</span>
@@ -239,7 +240,7 @@ export function RubricsPage() {
       </div>
 
       {showBuilder && (
-        <form onSubmit={handleSave} className="bg-white border border-slate-200 rounded-xl p-6 mb-8 space-y-6">
+        <form onSubmit={handleSave} className={`${flowClasses.requirementsCard} p-6 mb-8 space-y-6`}>
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <h2 className="text-lg font-bold text-slate-900">
               {editingId ? "Edit Rubric (Creates New Immutable Version)" : "Create New Rubric (v1)"}
@@ -473,12 +474,12 @@ export function RubricsPage() {
             const totalPts = r.questions.reduce((acc, q) => acc + Number(q.max_marks || 0), 0);
             const canEdit = Boolean(user && (r.owner_id === user.id || r.creator === user.email));
             return (
-              <div key={r._id} className="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between">
+              <div key={r._id} className={`${flowClasses.requirementsCard} p-6 flex flex-col justify-between`}>
                 <div>
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="text-xs text-slate-500 flex items-center gap-2">
-                        <span>{r.subject}</span>
+                        <span className="font-semibold text-[#1D4ED8]">{r.subject}</span>
                         <span>·</span>
                         <span className="font-mono tabular-nums">v{r.current_version}</span>
                         <span>·</span>
@@ -497,13 +498,19 @@ export function RubricsPage() {
                   <p className="mt-2 text-xs text-slate-600 line-clamp-2">{r.questions[0]?.text}</p>
                   <p className="mt-2 text-xs text-slate-500 italic">{r.subject_instructions}</p>
 
-                  <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-3">
-                    {r.questions[0]?.criteria.map((c) => (
-                      <div key={c.criterion_id} className="flex items-center justify-between text-xs">
-                        <span className="text-slate-700 truncate pr-2">{c.title}</span>
-                        <span className="font-mono tabular-nums text-slate-500 shrink-0">{c.points} pts</span>
-                      </div>
-                    ))}
+                  <div className="mt-4 space-y-1.5 border-t border-blue-100 pt-3">
+                    {r.questions[0]?.criteria.map((c, idx) => {
+                      const jssCrit = getCriterionJss(idx);
+                      return (
+                        <div key={c.criterion_id} className="flex items-center justify-between text-xs">
+                          <span className="text-slate-700 truncate pr-2 inline-flex items-center gap-2">
+                            <span className={`w-2 h-2 rounded-sm shrink-0 ${jssCrit.reqSwatch}`} aria-hidden="true" />
+                            <span className="truncate">{c.title}</span>
+                          </span>
+                          <span className="font-mono tabular-nums text-slate-500 shrink-0">{c.points} pts</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 

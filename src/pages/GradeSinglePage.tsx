@@ -4,7 +4,8 @@ import { AppShell } from "../components/AppShell";
 import { apiRequest } from "../lib/api";
 import { useToast } from "../context/ToastContext";
 import { Rubric, SUPPORTED_SUBJECTS } from "../types";
-import { Upload, AlertTriangle, Sparkles, FileText, Trash2 } from "lucide-react";
+import { flowClasses } from "../styles/evaloraJss";
+import { Upload, AlertTriangle, Sparkles, FileText, Trash2, BookOpenCheck, FileSearch } from "lucide-react";
 
 interface AdHocCriterion {
   criterion_id: string;
@@ -185,11 +186,40 @@ export function GradeSinglePage() {
 
   return (
     <AppShell title="Single Answer & OCR Grading Studio" breadcrumb="Workspace / Grade Answer">
+      {/* Colorful Requirements vs Source Materials Flow Headliner */}
+      <section aria-label="Grading Flow Overview" className={`${flowClasses.headlinerBanner} p-5 mb-6`}>
+        <div className="grid md:grid-cols-12 gap-4 items-center">
+          <div className="md:col-span-7">
+            <div className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wide">
+              Requirements Headliner · {subject} {topic ? `· ${topic}` : ""}
+            </div>
+            <h2 className="mt-1 text-lg font-extrabold text-white text-balance">
+              {question.trim() || "Define the assessment question and marking criteria below"}
+            </h2>
+          </div>
+          <div className="md:col-span-5 flex flex-wrap md:justify-end gap-4 text-xs">
+            <div className="bg-white/10 border border-white/20 rounded-lg px-3.5 py-2">
+              <div className="text-slate-300">Rubric Target</div>
+              <div className="font-mono tabular-nums font-bold text-white mt-0.5">{maxMarks} Max Marks</div>
+            </div>
+            <div className="bg-white/10 border border-white/20 rounded-lg px-3.5 py-2">
+              <div className="text-slate-300">Source Material</div>
+              <div className="font-semibold text-emerald-200 mt-0.5">
+                {studentAnswer.trim() ? `${studentAnswer.trim().split(/\s+/).length} words ready` : "Awaiting submission"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <form onSubmit={handleSubmit} className="grid lg:grid-cols-12 gap-6">
-        {/* Left: Question & Rubric Configuration */}
-        <div className="lg:col-span-6 space-y-5 bg-white border border-slate-200 rounded-xl p-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <h2 className="text-base font-bold text-slate-900">1. Question & Marking Rubric</h2>
+        {/* Left: Question & Rubric Requirements */}
+        <div className={`lg:col-span-6 space-y-5 p-6 ${flowClasses.requirementsCard}`}>
+          <div className="flex items-center justify-between border-b border-blue-100 pb-3">
+            <h2 className="text-base font-bold text-slate-900 inline-flex items-center gap-2">
+              <BookOpenCheck className="w-4 h-4 text-[#1D4ED8]" />
+              <span>1. Assessment Requirements &amp; Rubric</span>
+            </h2>
             <select
               aria-label="Load configured rubric"
               value={selectedRubricId}
@@ -382,11 +412,14 @@ export function GradeSinglePage() {
           )}
         </div>
 
-        {/* Right: Student Answer & OCR Extraction */}
-        <div className="lg:col-span-6 space-y-5 bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between">
+        {/* Right: Student Source Materials & OCR Extraction */}
+        <div className={`lg:col-span-6 space-y-5 p-6 flex flex-col justify-between ${flowClasses.sourceMaterialCard}`}>
           <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-              <h2 className="text-base font-bold text-slate-900">2. Student Submission & OCR</h2>
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200/70 pb-3">
+              <h2 className="text-base font-bold text-slate-900 inline-flex items-center gap-2">
+                <FileSearch className="w-4 h-4 text-[#059669]" />
+                <span>2. Source Materials &amp; OCR</span>
+              </h2>
               <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
                 <button
                   type="button"
@@ -512,7 +545,7 @@ export function GradeSinglePage() {
             <button
               type="submit"
               disabled={grading || extracting}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 text-white text-sm font-semibold hover:bg-blue-800 transition-colors disabled:opacity-60 whitespace-nowrap shrink-0"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-60 whitespace-nowrap shrink-0 ${flowClasses.primaryCtaButton}`}
             >
               <Sparkles className="w-4 h-4" />
               <span>{grading ? "Evaluating..." : "Grade with Evidence"}</span>

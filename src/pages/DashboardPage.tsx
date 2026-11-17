@@ -5,6 +5,7 @@ import { ReliabilityBanner } from "../components/ReliabilityBanner";
 import { BrandLoader } from "../components/BrandLoader";
 import { apiRequest } from "../lib/api";
 import { GradingResult, Rubric } from "../types";
+import { flowClasses } from "../styles/evaloraJss";
 import { ArrowRight, Search } from "lucide-react";
 
 export function DashboardPage() {
@@ -65,33 +66,33 @@ export function DashboardPage() {
 
       {/* KPI Summary Strip */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Total Graded Answers</div>
+        <div className={`${flowClasses.kpiBlue} p-5`}>
+          <div className="text-xs font-semibold text-[#1D4ED8]">Total Graded Answers</div>
           <div className="mt-2 text-2xl font-bold text-slate-900 font-mono tabular-nums">
             {loading ? "—" : results.length}
           </div>
           <div className="mt-1 text-xs text-slate-500">Across {rubrics.length} rubrics</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Flagged for Review</div>
+        <div className={`${flowClasses.kpiAmber} p-5`}>
+          <div className="text-xs font-semibold text-[#D97706]">Flagged for Review</div>
           <div className="mt-2 text-2xl font-bold text-amber-700 font-mono tabular-nums">
             {loading ? "—" : needsReviewCount}
           </div>
           <div className="mt-1 text-xs text-slate-500">Uncertainty or OCR warnings</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Teacher Approved</div>
+        <div className={`${flowClasses.kpiEmerald} p-5`}>
+          <div className="text-xs font-semibold text-[#059669]">Teacher Approved</div>
           <div className="mt-2 text-2xl font-bold text-emerald-700 font-mono tabular-nums">
             {loading ? "—" : approvedCount}
           </div>
-          <div className="mt-1 text-xs text-slate-500">Verified & finalized marks</div>
+          <div className="mt-1 text-xs text-slate-500">Verified &amp; finalized marks</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Regraded Results</div>
-          <div className="mt-2 text-2xl font-bold text-blue-700 font-mono tabular-nums">
+        <div className={`${flowClasses.kpiIndigo} p-5`}>
+          <div className="text-xs font-semibold text-[#4F46E5]">Regraded Results</div>
+          <div className="mt-2 text-2xl font-bold text-indigo-700 font-mono tabular-nums">
             {loading ? "—" : regradedCount}
           </div>
           <div className="mt-1 text-xs text-slate-500">Tracked with score deltas</div>
@@ -117,24 +118,24 @@ export function DashboardPage() {
         </div>
 
         <div className="mt-4 grid md:grid-cols-3 gap-4 text-sm">
-          <Link to="/grade-exam" className="p-4 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-slate-50 transition-colors">
-            <div className="font-semibold text-slate-900">1. Grade + Verify Evidence</div>
+          <Link to="/grade-exam" className={`p-4 transition-transform hover:-translate-y-0.5 ${flowClasses.sourceMaterialCard}`}>
+            <div className="font-semibold text-slate-900">1. Source Materials &amp; Evidence</div>
             <p className="mt-1 text-xs text-slate-600">
               Submit digital text, PDFs, or handwritten scans; review OCR warnings and exact verbatim evidence highlights.
             </p>
           </Link>
 
-          <Link to="/regrade" className="p-4 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-slate-50 transition-colors">
-            <div className="font-semibold text-slate-900">2. Evolve Rubric & Regrade</div>
+          <Link to="/regrade" className={`p-4 transition-transform hover:-translate-y-0.5 ${flowClasses.requirementsCard}`}>
+            <div className="font-semibold text-slate-900">2. Evolve Requirements &amp; Regrade</div>
             <p className="mt-1 text-xs text-slate-600">
               Update Physics rubric criteria from v1 to v2 and regrade existing answers with side-by-side score diffs.
             </p>
           </Link>
 
-          <Link to="/evaluation" className="p-4 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-slate-50 transition-colors">
-            <div className="font-semibold text-slate-900">3. Measure Agreement & Calibrate</div>
+          <Link to="/evaluation" className={`p-4 transition-transform hover:-translate-y-0.5 ${flowClasses.indigoAccentCard}`}>
+            <div className="font-semibold text-slate-900">3. Measure Agreement &amp; Calibrate</div>
             <p className="mt-1 text-xs text-slate-600">
-              Inspect MAE, RMSE, Cohen's kappa, and run held-out dataset evaluations without test-set leakage.
+              Inspect MAE, RMSE, Cohen&apos;s kappa, and run held-out dataset evaluations without test-set leakage.
             </p>
           </Link>
         </div>

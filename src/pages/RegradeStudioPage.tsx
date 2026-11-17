@@ -4,6 +4,7 @@ import { AppShell } from "../components/AppShell";
 import { apiRequest } from "../lib/api";
 import { useToast } from "../context/ToastContext";
 import { GradingResult, Rubric, RubricVersion } from "../types";
+import { flowClasses } from "../styles/evaloraJss";
 import { RefreshCw, ArrowRight, AlertTriangle } from "lucide-react";
 
 export function RegradeStudioPage() {
@@ -99,10 +100,10 @@ export function RegradeStudioPage() {
   return (
     <AppShell title="Instant Regrading & Rubric Diff Studio" breadcrumb="Workspace / Instant Regrade">
       <div className="grid lg:grid-cols-12 gap-6">
-        {/* Configuration Panel */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 space-y-5">
+        {/* Configuration Panel: Rubric Requirements */}
+        <div className={`lg:col-span-5 p-6 space-y-5 ${flowClasses.requirementsCard}`}>
           <div>
-            <h2 className="text-base font-bold text-slate-900">1. Choose Updated Rubric & Version</h2>
+            <h2 className="text-base font-bold text-slate-900">1. Choose Updated Requirements &amp; Version</h2>
             <p className="text-xs text-slate-500 mt-0.5">
               Original grading records are never overwritten; every regrade creates an auditable comparison.
             </p>
@@ -186,11 +187,11 @@ export function RegradeStudioPage() {
           </div>
         </div>
 
-        {/* Target Submissions Selection */}
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between space-y-5">
+        {/* Target Submissions Selection: Source Materials */}
+        <div className={`lg:col-span-7 p-6 flex flex-col justify-between space-y-5 ${flowClasses.sourceMaterialCard}`}>
           <div>
-            <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-              <h2 className="text-base font-bold text-slate-900">2. Select Previously Evaluated Answers</h2>
+            <div className="flex items-center justify-between gap-2 pb-3 border-b border-emerald-200/70">
+              <h2 className="text-base font-bold text-slate-900">2. Select Source Submissions to Regrade</h2>
               <button
                 type="button"
                 onClick={() => setSelectedResultIds(matchingResults.map((r) => r._id))}
@@ -250,10 +251,10 @@ export function RegradeStudioPage() {
                 type="button"
                 onClick={handleRegrade}
                 disabled={running || selectedResultIds.length === 0}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 text-white text-sm font-semibold hover:bg-blue-800 disabled:opacity-60"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-60 ${flowClasses.primaryCtaButton}`}
               >
                 <RefreshCw className={`w-4 h-4 ${running ? "animate-spin" : ""}`} />
-                <span>{running ? "Regrading with Gemini..." : `Instant Regrade (${selectedResultIds.length})`}</span>
+                <span>{running ? "Regrading with Evalora..." : `Instant Regrade (${selectedResultIds.length})`}</span>
               </button>
             </div>
           </div>

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { EvaloraLogo } from "./EvaloraLogo";
+import { flowClasses } from "../styles/evaloraJss";
 
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -51,7 +52,7 @@ export function AppShell({
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[#0F1E33] text-slate-200">
+    <div className={`flex flex-col h-full text-slate-200 ${flowClasses.sidebarShell}`}>
       <div className="px-5 py-4 border-b border-slate-800/80 flex items-center justify-between">
         <Link to="/dashboard" aria-label="Evalora Dashboard">
           <EvaloraLogo theme="dark" size="sm" />
@@ -160,7 +161,7 @@ export function AppShell({
           <div className="flex items-center gap-3 shrink-0">
             <Link
               to="/grade-exam"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1D4ED8] text-white text-xs font-semibold hover:bg-blue-800 transition-colors whitespace-nowrap shrink-0"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 ${flowClasses.primaryCtaButton}`}
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Grade Answer</span>
