@@ -1259,7 +1259,7 @@ async function createServer() {
   // ==================== EXPORT PROJECT ZIP ====================
   app.get("/api/export-project-zip", requireAuth, async (_req, res) => {
     try {
-      const zipPath = "/tmp/EvaluAI-Project-upgraded.zip";
+      const zipPath = "/tmp/Evalora-Project-upgraded.zip";
       const pyScript = `
 import os, zipfile
 root = os.getcwd()
@@ -1273,10 +1273,10 @@ with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:
                 continue
             full = os.path.join(dirpath, fname)
             rel = os.path.relpath(full, root)
-            zf.write(full, os.path.join("EvaluAI-Project", rel))
+            zf.write(full, os.path.join("Evalora-Project", rel))
 `;
       await execFileAsync("python3", ["-c", pyScript], { cwd: process.cwd() });
-      res.download(zipPath, "EvaluAI-Project-upgraded.zip");
+      res.download(zipPath, "Evalora-Project-upgraded.zip");
     } catch (err: any) {
       res.status(500).json({ detail: err?.message || "Failed to generate project ZIP archive." });
     }
@@ -1349,11 +1349,11 @@ with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:
   const cliPort = cliPortIdx >= 0 ? Number(process.argv[cliPortIdx + 1]) : NaN;
   const port = Number.isFinite(cliPort) && cliPort > 0 ? cliPort : Number(process.env.PORT || 3000);
   httpServer.listen(port, "0.0.0.0", () => {
-    console.log(`EvaluAI server running on http://0.0.0.0:${port}`);
+    console.log(`Evalora server running on http://0.0.0.0:${port}`);
   });
 }
 
 createServer().catch((err) => {
-  console.error("Failed to start EvaluAI server:", err);
+  console.error("Failed to start Evalora server:", err);
   process.exit(1);
 });

@@ -24,7 +24,7 @@ export interface EvaluAIDB {
 function buildSeedData(): EvaluAIDB {
   const now = new Date().toISOString();
   const demoUserId = "demo-teacher-001";
-  const demoEmail = "demo.teacher@evaluai.edu";
+  const demoEmail = "demo.teacher@evalora.edu";
 
   const physicsRubricId = "rubric-physics-newton";
   const bioRubricId = "rubric-bio-photosynthesis";
@@ -553,6 +553,18 @@ export function loadDB(): EvaluAIDB {
     const raw = fs.readFileSync(DB_PATH, "utf8");
     cachedDb = JSON.parse(raw) as EvaluAIDB;
     let patched = false;
+    for (const u of cachedDb.users || []) {
+      if (u._id === "demo-teacher-001" && u.email === "demo.teacher@evaluai.edu") {
+        u.email = "demo.teacher@evalora.edu";
+        patched = true;
+      }
+    }
+    for (const r of cachedDb.rubrics || []) {
+      if (r.creator === "demo.teacher@evaluai.edu") {
+        r.creator = "demo.teacher@evalora.edu";
+        patched = true;
+      }
+    }
     for (const p of cachedDb.prompt_versions || []) {
       if ((p._id === "prompt-v1-standard" || p._id === "prompt-v2-partial") && !p.is_template) {
         p.is_template = true;

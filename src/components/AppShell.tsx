@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -15,6 +15,7 @@ import {
   Plus,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { EvaloraLogo } from "./EvaloraLogo";
 
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -40,16 +41,20 @@ export function AppShell({
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  useEffect(() => {
+    document.title = `${title} · Evalora`;
+  }, [title]);
+
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-slate-900 text-slate-200">
-      <div className="px-5 py-5 border-b border-slate-800 flex items-center justify-between">
-        <Link to="/dashboard" className="text-lg font-bold tracking-tight text-white whitespace-nowrap">
-          EvaluAI
+    <div className="flex flex-col h-full bg-[#0F1E33] text-slate-200">
+      <div className="px-5 py-4 border-b border-slate-800/80 flex items-center justify-between">
+        <Link to="/dashboard" aria-label="Evalora Dashboard">
+          <EvaloraLogo theme="dark" size="sm" />
         </Link>
         <button
           type="button"
@@ -72,8 +77,8 @@ export function AppShell({
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                   isActive
-                    ? "bg-blue-700 text-white"
-                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                    ? "bg-[#1D4ED8] text-white"
+                    : "text-slate-300 hover:bg-slate-800/80 hover:text-white"
                 }`
               }
             >
@@ -84,7 +89,7 @@ export function AppShell({
         })}
       </nav>
 
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-full overflow-hidden bg-slate-700 shrink-0 flex items-center justify-center text-xs font-semibold text-white">
             <img
@@ -105,11 +110,14 @@ export function AppShell({
         <button
           type="button"
           onClick={handleLogout}
-          className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-colors"
+          className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-300 bg-slate-800/90 hover:bg-slate-700 hover:text-white transition-colors"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>Sign Out</span>
         </button>
+        <div className="mt-3 pt-2.5 border-t border-slate-800/70 text-[10px] text-slate-400 text-center">
+          Evalora · Smarter Grading. Fairer Evaluation.
+        </div>
       </div>
     </div>
   );
@@ -152,7 +160,7 @@ export function AppShell({
           <div className="flex items-center gap-3 shrink-0">
             <Link
               to="/grade-exam"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1D4ED8] text-white text-xs font-semibold hover:bg-blue-800 transition-colors whitespace-nowrap shrink-0"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Grade Answer</span>

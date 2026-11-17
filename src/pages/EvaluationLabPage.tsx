@@ -84,7 +84,7 @@ export function EvaluationLabPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "evaluai_sample_benchmark.csv";
+    a.download = "evalora_sample_benchmark.csv";
     document.body.appendChild(a);
     a.click();
     a.remove();

@@ -4,6 +4,10 @@
   --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-evalora-navy: #0f1e33;
+  --color-evalora-cobalt: #1d4ed8;
+  --color-evalora-emerald: #059669;
+  --color-evalora-amber: #d97706;
 }
 
 @layer base {

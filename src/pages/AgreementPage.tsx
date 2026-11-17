@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
+import { BrandLoader } from "../components/BrandLoader";
 import { apiRequest } from "../lib/api";
 import { AlertTriangle, Info } from "lucide-react";
 
@@ -52,7 +53,7 @@ export function AgreementPage() {
       )}
 
       {loading ? (
-        <div className="text-sm text-slate-500">Computing agreement statistics...</div>
+        <BrandLoader label="Computing agreement statistics..." />
       ) : !data || data.sample_size === 0 ? (
         <div className="bg-white border border-slate-200 rounded-xl p-10 text-center">
           <h2 className="text-base font-bold text-slate-900">Insufficient Teacher-Reviewed Records</h2>

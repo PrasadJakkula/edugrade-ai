@@ -20,8 +20,8 @@ export function SettingsPage() {
   const handleDownloadZip = async () => {
     setDownloadingZip(true);
     try {
-      await apiDownload("/export-project-zip", "EvaluAI-Project-upgraded.zip");
-      notify("success", "Complete upgraded project ZIP downloaded.");
+      await apiDownload("/export-project-zip", "Evalora-Project-upgraded.zip");
+      notify("success", "Complete upgraded Evalora project ZIP downloaded.");
     } catch (err: any) {
       notify("error", err.message || "Could not export ZIP archive.");
     } finally {
@@ -54,16 +54,16 @@ export function SettingsPage() {
           <div className="bg-white border border-slate-200 rounded-xl p-6">
             <h2 className="text-base font-bold text-slate-900">Export Complete Repository</h2>
             <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-              Download the complete modified EvaluAI repository (Python FastAPI backend, React frontend, Dockerfiles, tests, and documentation) as a portable ZIP archive ready to push to GitHub.
+              Download the complete Evalora repository (Python FastAPI backend, React frontend, Dockerfiles, tests, and documentation) as a portable ZIP archive ready to push to GitHub.
             </p>
             <button
               type="button"
               onClick={handleDownloadZip}
               disabled={downloadingZip}
-              className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 disabled:opacity-60"
+              className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#1D4ED8] text-white text-xs font-semibold hover:bg-blue-800 disabled:opacity-60"
             >
               <Download className="w-4 h-4" />
-              <span>{downloadingZip ? "Packaging Archive..." : "Download EvaluAI-Project-upgraded.zip"}</span>
+              <span>{downloadingZip ? "Packaging Archive..." : "Download Evalora-Project-upgraded.zip"}</span>
             </button>
           </div>
         </div>

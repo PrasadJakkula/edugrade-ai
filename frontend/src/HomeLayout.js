@@ -17,11 +17,11 @@ function HomeLayout() {
           >
             <img
               src={logo}
-              alt="EvaluAI Logo"
+              alt="Evalora Logo"
               height={40}
               style={{ marginRight: 10, borderRadius: 6 }}
             />
-            <span style={{ color: "#fff", fontWeight: "600", fontSize: "1.25rem" }}>EvaluAI</span>
+            <span style={{ color: "#fff", fontWeight: "600", fontSize: "1.25rem" }}>Evalora</span>
           </div>
           <div>
             <button

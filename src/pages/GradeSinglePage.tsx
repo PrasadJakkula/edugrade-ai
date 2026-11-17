@@ -507,7 +507,7 @@ export function GradeSinglePage() {
 
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
             <span className="text-xs text-slate-500">
-              Evaluated server-side via Gemini · Evidence verified automatically
+              Evaluated server-side by Evalora · Evidence verified automatically
             </span>
             <button
               type="submit"

@@ -7,7 +7,7 @@ from backend.services.evidence_verifier import verify_all_evidence
 from backend.services.reliability_engine import assess_reliability
 from backend.utils.security import strip_prompt_injection_delimiters
 
-SYSTEM_PROMPT = """You are EvaluAI, a rigorous academic assessment engine.
+SYSTEM_PROMPT = """You are Evalora, a rigorous academic assessment engine.
 Evaluate the student's written answer conceptually against the provided rubric criteria.
 Rules:
 1. Understand conceptual meaning and accept scientifically or factually valid alternative explanations or wording.

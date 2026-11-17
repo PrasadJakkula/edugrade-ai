@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
+import { BrandLoader } from "../components/BrandLoader";
 import { apiRequest } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
@@ -465,7 +466,7 @@ export function RubricsPage() {
 
       {/* Rubrics List */}
       {loading ? (
-        <div className="text-sm text-slate-500">Loading rubrics...</div>
+        <BrandLoader label="Loading rubrics..." />
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
           {rubrics.map((r) => {

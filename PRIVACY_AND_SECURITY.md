@@ -2,11 +2,11 @@
 
 ## Data flow
 
-For each evaluation, EvaluAI sends to the configured LLM provider (Google Gemini by default) the evaluation prompt, the grading rubric when rubric-guided evaluation is used, and the student submission (PDF pages or page images). No user accounts, student rosters, e-mail addresses, or database contents are transmitted by the platform. Personal information contained within a submission may, however, be transmitted as part of that document unless it is manually anonymized beforehand. All other application data, including rubrics, evaluations, and user accounts, is stored in the MongoDB instance configured by the operator.
+For each evaluation, Evalora sends to the configured LLM provider (Google Gemini by default) the evaluation prompt, the grading rubric when rubric-guided evaluation is used, and the student submission (PDF pages or page images). No user accounts, student rosters, e-mail addresses, or database contents are transmitted by the platform. Personal information contained within a submission may, however, be transmitted as part of that document unless it is manually anonymized beforehand. All other application data, including rubrics, evaluations, and user accounts, is stored in the MongoDB instance configured by the operator.
 
 ## Anonymization of submissions
 
-EvaluAI does not automatically remove personal identifiers from student submissions. Submissions containing personal information, such as names or email addresses, should therefore be manually anonymized before being uploaded to and processed by EvaluAI. In the validation reported in the accompanying paper, all student names and direct identifiers were removed in accordance with the criteria established by the Data Protection Officer of the University of Extremadura for the use of examination data in this study. Automated redaction support is on the roadmap.
+Evalora does not automatically remove personal identifiers from student submissions. Submissions containing personal information, such as names or email addresses, should therefore be manually anonymized before being uploaded to and processed by Evalora. In the validation reported in the accompanying paper, all student names and direct identifiers were removed in accordance with the criteria established by the Data Protection Officer of the University of Extremadura for the use of examination data in this study. Automated redaction support is on the roadmap.
 
 ## Provider data-use terms
 
@@ -26,7 +26,7 @@ All API endpoints except registration and login require a JSON Web Token (JWT) b
 
 ## Prompt-injection considerations
 
-A submission could contain text attempting to manipulate the grading model. EvaluAI mitigates this risk through two mechanisms: (1) every AI-generated evaluation is reviewed and confirmed by the instructor through the Human-in-the-Loop workflow before becoming definitive; and (2) the prompt templates explicitly instruct the model to treat student-submission content strictly as material to be evaluated and never as instructions.
+A submission could contain text attempting to manipulate the grading model. Evalora mitigates this risk through two mechanisms: (1) every AI-generated evaluation is reviewed and confirmed by the instructor through the Human-in-the-Loop workflow before becoming definitive; and (2) the prompt templates explicitly instruct the model to treat student-submission content strictly as material to be evaluated and never as instructions.
 
 ## Data protection and GDPR considerations
 

@@ -78,7 +78,9 @@ def generate_pdf_report(exam: dict) -> bytes:
     questions = correction_block.get("correction", []) or correction_block.get("criterion_evaluations", [])
 
     pdf.set_font("Helvetica", "B", 15)
-    pdf.cell(0, 10, txt=sanitize_text(f"EvaluAI Assessment Report - {student_name}"), ln=True, align="C")
+    pdf.cell(0, 10, txt=sanitize_text(f"Evalora Assessment Report - {student_name}"), ln=True, align="C")
+    pdf.set_font("Helvetica", "I", 9)
+    pdf.cell(0, 5, txt="Evalora - Smarter Grading. Fairer Evaluation.", ln=True, align="C")
     pdf.ln(4)
     pdf.set_font("Helvetica", "B", 12)
     pdf.cell(0, 8, txt=sanitize_text(f"Final Score: {assigned_grade} / {max_grade}"), ln=True)

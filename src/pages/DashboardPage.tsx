@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
 import { ReliabilityBanner } from "../components/ReliabilityBanner";
+import { BrandLoader } from "../components/BrandLoader";
 import { apiRequest } from "../lib/api";
 import { GradingResult, Rubric } from "../types";
 import { ArrowRight, Search } from "lucide-react";
@@ -101,9 +102,9 @@ export function DashboardPage() {
       <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
-            <h2 className="text-base font-bold text-slate-900">Guided Platform Walkthrough</h2>
+            <h2 className="text-base font-bold text-slate-900">Guided Evalora Walkthrough</h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Preloaded demonstration records are labeled “(Demo)” and let you verify every innovation end-to-end.
+              Preloaded demonstration records are labeled “(Demo)” and let you verify every Evalora capability end-to-end.
             </p>
           </div>
           <Link
@@ -176,7 +177,9 @@ export function DashboardPage() {
         </div>
 
         {loading ? (
-          <div className="p-8 text-sm text-slate-500">Loading evaluation records...</div>
+          <div className="p-4">
+            <BrandLoader label="Loading evaluation records..." />
+          </div>
         ) : filteredResults.length === 0 ? (
           <div className="p-10 text-center">
             <p className="text-sm font-medium text-slate-800">No grading results match this filter.</p>

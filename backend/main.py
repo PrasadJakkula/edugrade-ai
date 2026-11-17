@@ -13,9 +13,9 @@ from backend.routers.batch import router as batch_router
 from backend.services.ai_provider import AIProviderError
 
 app = FastAPI(
-    title="EvaluAI API",
+    title="Evalora API",
     version="2.0.0",
-    description="Evidence-based AI answer evaluation, rubric versioning, instant regrading, and reliability platform.",
+    description="Evalora — Smarter Grading. Fairer Evaluation. Evidence-based AI answer evaluation, rubric versioning, instant regrading, and reliability platform.",
 )
 
 cors_origins_raw = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")

@@ -1,8 +1,9 @@
-# EvaluAI — Evidence-Based AI Answer Evaluation & Regrading Platform
+# Evalora — Smarter Grading. Fairer Evaluation.
 
+Evidence-based AI answer evaluation, rubric versioning, instant regrading, and teacher agreement platform.
 Built on the open-source foundation of [`ArturoBarriga/EvaluAI-Project`](https://github.com/ArturoBarriga/EvaluAI-Project) (Apache-2.0 License, University of Extremadura / Arturo Barriga).
 
-EvaluAI transforms LLM-assisted grading from opaque score generation into a transparent, auditable assessment workflow:
+Evalora transforms LLM-assisted grading from opaque score generation into a transparent, auditable assessment workflow:
 - **Conceptual multi-subject grading** across Physics, Chemistry, Biology, Mathematics, Computer Science, Electronics & Engineering, History, Geography, English, and General Science.
 - **Verbatim evidence verification** that programmatically anchors every awarded mark to exact substrings in the student's text and flags ungrounded citations.
 - **3-tier reliability & uncertainty detection** (`reliable`, `needs_review`, `cannot_reliably_grade`) using evidence coverage, OCR quality checks, score arithmetic invariants, and ambiguity signals—without fabricated confidence percentages.

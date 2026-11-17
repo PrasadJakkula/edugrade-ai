@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
 import { ReliabilityBanner } from "../components/ReliabilityBanner";
 import { EvidenceHighlighter } from "../components/EvidenceHighlighter";
+import { BrandLoader } from "../components/BrandLoader";
 import { apiRequest } from "../lib/api";
 import { useToast } from "../context/ToastContext";
 import { GradingResult } from "../types";
@@ -70,7 +71,7 @@ export function ResultDetailPage() {
   const handleDownloadReport = () => {
     if (!result) return;
     const lines = [
-      `EVALUAI ASSESSMENT REPORT`,
+      `EVALORA ASSESSMENT REPORT — Smarter Grading. Fairer Evaluation.`,
       `Student: ${result.student_name}`,
       `Subject: ${result.subject} (${result.topic || "General"})`,
       `Rubric: ${result.rubric_name} (v${result.rubric_version ?? "custom"})`,
@@ -93,7 +94,7 @@ export function ResultDetailPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `EvaluAI_Report_${result._id}.txt`;
+    a.download = `Evalora_Report_${result._id}.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -101,7 +102,7 @@ export function ResultDetailPage() {
   if (loading) {
     return (
       <AppShell title="Evaluation Inspection" breadcrumb="Workspace / Result">
-        <div className="text-sm text-slate-500">Loading evaluation details...</div>
+        <BrandLoader label="Loading evaluation details..." />
       </AppShell>
     );
   }

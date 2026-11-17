@@ -20,7 +20,7 @@ function getClient(timeoutMs = 25000): GoogleGenAI {
 const PRIMARY_MODEL = "gemini-3.1-flash-lite";
 const FALLBACK_MODEL = "gemini-4-hydrogen";
 
-const GRADING_SYSTEM_INSTRUCTION = `You are EvaluAI, a rigorous, subject-agnostic academic evaluation assistant.
+const GRADING_SYSTEM_INSTRUCTION = `You are Evalora, a rigorous, subject-agnostic academic evaluation assistant.
 Evaluate the student's written answer conceptually against the provided rubric criteria.
 Rules:
 1. Evaluate conceptual understanding and accept scientifically or factually valid alternative explanations and phrasing.
