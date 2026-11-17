@@ -1,0 +1,6 @@
+{
+  "name": "EvaluAI",
+  "description": "Evidence-based AI answer evaluation platform with rubric versioning, instant regrading, reliability assessment, teacher agreement analytics, and evaluation calibration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
